@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/scrollView"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+
+
+        >
+
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/mainimage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:background="@drawable/edittextshaper"
+            android:layout_gravity="center"
+            android:id="@+id/edit_book_search"
+            android:layout_width="280dp"
+            android:hint="어떤 책을 검색해볼까요?"
+            android:drawableLeft="@drawable/baseline_search_black_18dp"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:fontFamily="@font/ca24"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="온라인 베스트셀러"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:id="@+id/best_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+
+        <TextView
+            android:fontFamily="@font/ca24"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:text="전국 도서관 베스트셀러"
+            android:textSize="15dp"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:layout_marginTop="10dp"
+            android:id="@+id/recycler_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical">
+
+    <ImageView
+        android:layout_marginTop="13dp"
+        android:id="@+id/bookimage"
+        android:layout_width="180dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_launcher_background"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:paddingTop="10dp"
+            android:fontFamily="@font/nanumsquaer"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:textColor="#000000"
+            android:id="@+id/booktitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="미움받을용기"/>
+
+
+
+        <TextView
+
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:id="@+id/bookauthors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지은이"/>
+        <TextView
+
+            android:layout_marginTop="3dp"
+            android:textColor="#000000"
+            android:id="@+id/bookpublisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="출판사"/>
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

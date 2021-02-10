@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigaticon_menu"
+        android:icon="@drawable/baseline_home_black_24dp"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/navigaticon_menu2"
+        android:icon="@drawable/baseline_event_note_black_24dp"
+        android:title="기록" />
+
+    <item
+        android:id="@+id/navigaticon_menu3"
+        android:icon="@drawable/baseline_wallpaper_black_24dp"
+        android:title="갤러리" />
+
+    <item
+        android:id="@+id/navigaticon_menu4"
+        android:icon="@drawable/baseline_menu_book_black_24dp"
+        android:title="서재" />
+
+
+
+
+</menu>

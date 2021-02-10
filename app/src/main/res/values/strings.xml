@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">독서노트</string>
+    <string name="kakao_app_Key">dc333fc5b5e9354acaf596339b4288cd</string>
+    <string name="admob_app_id">ca-app-pub-3349282770553398~1911582665</string>
+    <string name="banner_ad_unit_id"> ca-app-pub-3349282770553398/6972337651</string>
+    <string name="banner_ad_unit_id_for_test">ca-app-pub-3940256099942544/6300978111</string>
+</resources>

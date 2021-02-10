@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.choimyeongsik.BookBank">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_new"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_new_foreground"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name="com.example.choimyeongsik.BookBank.contents_revise"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.choimyeongsik.BookBank.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.choimyeongsik.BookBank.book_search"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.choimyeongsik.BookBank.book_information"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.choimyeongsik.BookBank.book_record"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.choimyeongsik.BookBank.ImageClickView"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.example.choimyeongsik.BookBank.contents_record"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.example.choimyeongsik.BookBank.Setting"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_Key" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id"/>
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.choimyeongsik.BookBank.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider" />
+        </provider>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+</manifest>
