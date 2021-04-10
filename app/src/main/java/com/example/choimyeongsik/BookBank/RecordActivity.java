@@ -32,7 +32,7 @@ import java.util.Date;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
-
+//
 public class RecordActivity extends AppCompatActivity {
     EditText editText;
     Button write_button;

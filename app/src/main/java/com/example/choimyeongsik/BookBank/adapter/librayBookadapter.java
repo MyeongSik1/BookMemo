@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 public class librayBookadapter extends RecyclerView.Adapter<librayBookadapter.ItemViewHolder>{
    private ArrayList<datalibraryVO> mitems;
    Context mContext;

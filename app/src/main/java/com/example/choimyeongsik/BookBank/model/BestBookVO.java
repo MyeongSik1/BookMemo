@@ -1,5 +1,5 @@
 package com.example.choimyeongsik.BookBank.model;
-
+//
 public class BestBookVO {
     private String best_isbn13;
     private String best_bookimageURL;

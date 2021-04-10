@@ -1,5 +1,5 @@
 package com.example.choimyeongsik.BookBank.model;
-
+//
 import java.util.ArrayList;
 
 public class KAKAOBookVO {

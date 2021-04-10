@@ -26,7 +26,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 public class BookRecordActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_WRITE = 1003;
     public static final int REQUEST_CODE_RECORD= 1004;

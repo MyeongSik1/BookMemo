@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
     private ArrayList<KAKAOBookVO> mitem;

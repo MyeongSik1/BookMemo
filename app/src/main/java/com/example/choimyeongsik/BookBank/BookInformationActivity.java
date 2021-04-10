@@ -47,7 +47,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-
+//
 public class BookInformationActivity extends AppCompatActivity implements View.OnClickListener {
     TextView text_title;
     TextView text_sale_price;

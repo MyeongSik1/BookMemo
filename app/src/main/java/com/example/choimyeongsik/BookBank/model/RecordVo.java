@@ -1,6 +1,6 @@
 package com.example.choimyeongsik.BookBank.model;
 
-
+//
 public class RecordVo {
 
     private String content;

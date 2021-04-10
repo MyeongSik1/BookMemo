@@ -1,5 +1,5 @@
 package com.example.choimyeongsik.BookBank.model;
-
+//
 import com.example.choimyeongsik.BookBank.model.Document;
 import com.google.gson.annotations.SerializedName;
 

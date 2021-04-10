@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 public class GridItemAdapter extends RecyclerView.Adapter<GridItemAdapter.ViewHolder> {
     private ArrayList<GridItem> mitems;
     private Context context;

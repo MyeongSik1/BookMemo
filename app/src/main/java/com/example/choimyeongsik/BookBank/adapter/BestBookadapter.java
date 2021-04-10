@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 public class BestBookadapter extends RecyclerView.Adapter<BestBookadapter.BestViewHolder> {
     private ArrayList<BestBookVO> mitem;
     public BestBookadapter(ArrayList<BestBookVO> itmes) {

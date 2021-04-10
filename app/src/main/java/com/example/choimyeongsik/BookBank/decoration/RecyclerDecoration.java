@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 public class RecyclerDecoration extends RecyclerView.ItemDecoration {
 
     private final int divHeight;

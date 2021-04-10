@@ -47,7 +47,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
-
+//
 import static com.kakao.util.helper.Utility.getPackageInfo;
 
 public class FragmentHome extends Fragment {

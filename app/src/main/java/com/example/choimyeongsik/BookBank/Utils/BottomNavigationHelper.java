@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Field;
-
+//
 public class BottomNavigationHelper {
     @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {

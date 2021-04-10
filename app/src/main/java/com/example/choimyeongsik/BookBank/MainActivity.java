@@ -32,7 +32,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
+//
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "123";
     private FragmentManager fragmentManager = getSupportFragmentManager();

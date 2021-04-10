@@ -1,5 +1,5 @@
 package com.example.choimyeongsik.BookBank.model;
-
+//
 public class GridItem {
     private byte[] image;
 

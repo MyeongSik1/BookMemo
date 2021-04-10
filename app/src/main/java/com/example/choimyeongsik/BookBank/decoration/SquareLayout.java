@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-
+//
 public class SquareLayout extends RelativeLayout {              // 그리드 일정하게 정렬
     public SquareLayout(Context context) {
         super(context);

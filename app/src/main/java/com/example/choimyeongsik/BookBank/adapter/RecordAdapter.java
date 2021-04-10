@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ItemViewHolder> {
 
 
