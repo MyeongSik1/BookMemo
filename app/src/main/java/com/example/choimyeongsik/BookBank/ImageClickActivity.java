@@ -16,7 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 public class ImageClickActivity extends AppCompatActivity {
     PhotoView view;
 
-gg
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
