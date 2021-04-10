@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.adapter;
 
 
 import android.content.Context;
@@ -10,17 +10,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.R;
+import com.example.choimyeongsik.BookBank.model.datalibraryVO;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class libraybook extends RecyclerView.Adapter<libraybook.ItemViewHolder>{
+public class librayBookadapter extends RecyclerView.Adapter<librayBookadapter.ItemViewHolder>{
    private ArrayList<datalibraryVO> mitems;
    Context mContext;
 
-    public libraybook(ArrayList<datalibraryVO> items, Context context) {
+    public librayBookadapter(ArrayList<datalibraryVO> items, Context context) {
        this.mitems = items;
        this.mContext = context;
 

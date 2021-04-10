@@ -1,14 +1,14 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.model;
 
 
-public class Record_Item {
+public class RecordVo {
 
     private String content;
     private String name;
     private byte[] image;
     private String number;
 
-    public Record_Item(String name, String content, byte[] image, String number) {
+    public RecordVo(String name, String content, byte[] image, String number) {
 this.image=image;
         this.name = name;
         this.content = content;

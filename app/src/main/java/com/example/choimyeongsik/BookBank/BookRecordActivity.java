@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.DB.BookDatabase;
+import com.example.choimyeongsik.BookBank.Fragment.Fragmentlibrary;
+import com.example.choimyeongsik.BookBank.adapter.RecordAdapter;
+import com.example.choimyeongsik.BookBank.model.RecordVo;
 
 import java.util.ArrayList;
 
@@ -23,7 +27,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class book_record extends AppCompatActivity {
+public class BookRecordActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_WRITE = 1003;
     public static final int REQUEST_CODE_RECORD= 1004;
 Button record_button;
@@ -33,8 +37,8 @@ Button record_button;
     String title_;
     public RecyclerView recyclerView;
     public RecordAdapter adapter;
-    public Record_Item record_item;
-    public ArrayList<Record_Item> mitems;
+    public RecordVo record_item;
+    public ArrayList<RecordVo> mitems;
     TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +66,7 @@ Button record_button;
         linearLayoutManager.setStackFromEnd(true);
         recyclerView = (RecyclerView) findViewById(R.id.record_Recycler);
         recyclerView.setLayoutManager(linearLayoutManager);
-        mitems = new ArrayList<Record_Item>();
+        mitems = new ArrayList<RecordVo>();
         adapter = new RecordAdapter(getApplicationContext(),mitems);
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
        recyclerView.setAdapter(adapter);
@@ -83,7 +87,7 @@ Button record_button;
             @Override
             public void onClick(View view) {
                 String title = title_;
-                Intent intent = new Intent(getApplicationContext(),contents_record.class);
+                Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
                 intent.putExtra("title", title);
                 startActivityForResult(intent,REQUEST_CODE_WRITE );
 
@@ -100,7 +104,7 @@ Button record_button;
                 BookDatabase helper2 = new BookDatabase(getApplication());
                 SQLiteDatabase db2 = helper2.getWritableDatabase();
                 db2.execSQL("DELETE FROM tb_book WHERE name = '" + title_ + "';");
-                Fragmentlibrary fragmentlibrary = new Fragmentlibrary();
+              Fragmentlibrary fragmentlibrary = new Fragmentlibrary();
 
               finish();
 
@@ -108,11 +112,11 @@ Button record_button;
             }
         });
         // 리사이클러뷰 클릭이벤트
-         recyclerView.addOnItemTouchListener(new book_search.RecyclerTouchListener(getApplicationContext(), recyclerView, new book_search.ClickListener() {
+         recyclerView.addOnItemTouchListener(new BookSerachActivity.RecyclerTouchListener(getApplicationContext(), recyclerView, new BookSerachActivity.ClickListener() {
              @Override
              public void onClick(View view, int postion) {
                  String number = mitems.get(postion).getNumber();
-                Intent intent1 = new Intent(getApplicationContext(), contents_revise.class);
+                Intent intent1 = new Intent(getApplicationContext(), ReviseActivity.class);
                 intent1.putExtra("number",number);
                 startActivityForResult(intent1,REQUEST_CODE_RECORD);
              }
@@ -144,7 +148,7 @@ Button record_button;
         while (cs.moveToNext()) {
             String na = cs.getString(cs.getColumnIndex("name"));
             if(title_.equals(na)) {
-                record_item = new Record_Item(
+                record_item = new RecordVo(
                         cs.getString(cs.getColumnIndex("name")),
                         cs.getString(cs.getColumnIndex("contents")),
                         cs.getBlob(cs.getColumnIndex("image")),
@@ -170,7 +174,7 @@ Button record_button;
         }
     }
     public void content_update() { // 되돌아왔을때 다시뿌리기
-        mitems = new ArrayList<Record_Item>();
+        mitems = new ArrayList<RecordVo>();
         adapter = new RecordAdapter(getApplicationContext(),mitems);
         recyclerView.setAdapter(adapter);
         cursorArray();

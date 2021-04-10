@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.adapter;
 
 import android.content.Context;
 
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.R;
+import com.example.choimyeongsik.BookBank.model.RecyclerItem;
 
 import java.util.ArrayList;
 

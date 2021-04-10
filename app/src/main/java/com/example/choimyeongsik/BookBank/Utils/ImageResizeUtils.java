@@ -1,15 +1,33 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.Utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ImageResizeUtils {
 
@@ -29,7 +47,7 @@ public class ImageResizeUtils {
 
             originalBm = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
 
-            if(isCamera) {
+            if (isCamera) {
 
                 // 카메라인 경우 이미지를 상황에 맞게 회전시킨다
                 try {
@@ -38,7 +56,7 @@ public class ImageResizeUtils {
                     int exifOrientation = exif.getAttributeInt(
                             ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
                     int exifDegree = exifOrientationToDegrees(exifOrientation);
-                    Log.d(TAG,"exifDegree : " + exifDegree);
+                    Log.d(TAG, "exifDegree : " + exifDegree);
 
                     originalBm = rotate(originalBm, exifDegree);
 
@@ -48,8 +66,8 @@ public class ImageResizeUtils {
 
             }
 
-            if(originalBm == null) {
-                Log.e(TAG,("파일 에러"));
+            if (originalBm == null) {
+                Log.e(TAG, ("파일 에러"));
                 return;
             }
 
@@ -57,8 +75,8 @@ public class ImageResizeUtils {
             int height = originalBm.getHeight();
 
             float aspect, scaleWidth, scaleHeight;
-            if(width > height) {
-                if(width <= newWidth) return;
+            if (width > height) {
+                if (width <= newWidth) return;
 
                 aspect = (float) width / height;
 
@@ -67,7 +85,7 @@ public class ImageResizeUtils {
 
             } else {
 
-                if(height <= newWidth) return;
+                if (height <= newWidth) return;
 
                 aspect = (float) height / width;
 
@@ -102,11 +120,11 @@ public class ImageResizeUtils {
 
         } finally {
 
-            if(originalBm != null){
+            if (originalBm != null) {
                 originalBm.recycle();
             }
 
-            if (resizedBitmap != null){
+            if (resizedBitmap != null) {
                 resizedBitmap.recycle();
             }
         }
@@ -119,18 +137,12 @@ public class ImageResizeUtils {
      * @param exifOrientation EXIF 회전각
      * @return 실제 각도
      */
-    public static int exifOrientationToDegrees(int exifOrientation)
-    {
-        if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_90)
-        {
+    public static int exifOrientationToDegrees(int exifOrientation) {
+        if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_90) {
             return 90;
-        }
-        else if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_180)
-        {
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_180) {
             return 180;
-        }
-        else if(exifOrientation == ExifInterface.ORIENTATION_ROTATE_270)
-        {
+        } else if (exifOrientation == ExifInterface.ORIENTATION_ROTATE_270) {
             return 270;
         }
         return 0;
@@ -139,33 +151,29 @@ public class ImageResizeUtils {
     /**
      * 이미지를 회전시킵니다.
      *
-     * @param bitmap 비트맵 이미지
+     * @param bitmap  비트맵 이미지
      * @param degrees 회전 각도
      * @return 회전된 이미지
      */
-    public static Bitmap rotate(Bitmap bitmap, int degrees)
-    {
-        if(degrees != 0 && bitmap != null)
-        {
+    public static Bitmap rotate(Bitmap bitmap, int degrees) {
+        if (degrees != 0 && bitmap != null) {
             Matrix m = new Matrix();
             m.setRotate(degrees, (float) bitmap.getWidth() / 2,
                     (float) bitmap.getHeight() / 2);
 
-            try
-            {
+            try {
                 Bitmap converted = Bitmap.createBitmap(bitmap, 0, 0,
                         bitmap.getWidth(), bitmap.getHeight(), m, true);
-                if(bitmap != converted)
-                {
+                if (bitmap != converted) {
                     bitmap.recycle();
                     bitmap = converted;
                 }
-            }
-            catch(OutOfMemoryError ex)
-            {
+            } catch (OutOfMemoryError ex) {
                 // 메모리가 부족하여 회전을 시키지 못할 경우 그냥 원본을 반환합니다.
             }
         }
         return bitmap;
     }
 }
+
+

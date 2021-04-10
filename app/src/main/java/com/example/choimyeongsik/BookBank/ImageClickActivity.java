@@ -13,7 +13,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class ImageClickView extends AppCompatActivity {
+public class ImageClickActivity extends AppCompatActivity {
     PhotoView view;
 
 

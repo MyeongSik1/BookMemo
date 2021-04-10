@@ -19,6 +19,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.choimyeongsik.BookBank.adapter.BestBookadapter;
+import com.example.choimyeongsik.BookBank.adapter.librayBookadapter;
+import com.example.choimyeongsik.BookBank.model.BestBookVO;
+import com.example.choimyeongsik.BookBank.model.datalibraryVO;
+
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
@@ -47,7 +52,7 @@ import static com.kakao.util.helper.Utility.getPackageInfo;
 
 public class FragmentHome extends Fragment {
     EditText edittext;
-    libraybook bookadapter;
+    librayBookadapter bookadapter;
     BestBookadapter bestbookadapter;
     Context mContext;
 
@@ -75,7 +80,6 @@ public class FragmentHome extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootview = (ViewGroup)inflater.inflate(R.layout.fragment_home,container,false);
         edittext = (EditText)rootview.findViewById(R.id.edit_book_search);
-        Log.d("ㅎㅇ","돌아옴");
         mRecyclerView = rootview.findViewById(R.id.recycler_book);
         mRecyclerView2 = rootview.findViewById(R.id.best_book);
         mRecyclerView.setHasFixedSize(true);
@@ -97,7 +101,7 @@ public class FragmentHome extends Fragment {
          int dayi = Integer.parseInt(day);
          int d,d2;
          String s,s2;
-        if (7 < dayi) {                // 도서관 날짜구하기
+        if (7 < dayi) {                // 도서관 날짜구하기 1주일마다 베스트셀러변경
             d = 8;
             d2 = dayi;
             s = String.format("%02d", d);
@@ -137,7 +141,7 @@ public class FragmentHome extends Fragment {
                     case EditorInfo.IME_ACTION_SEARCH:
 
                         String title = edittext.getText().toString();
-                        Intent intent = new Intent(getActivity(), book_search.class);
+                        Intent intent = new Intent(getActivity(), BookSerachActivity.class);
                         intent.putExtra("HOME", "HOME");
                         intent.putExtra("title", title);
                         startActivity(intent);
@@ -151,7 +155,7 @@ public class FragmentHome extends Fragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {          // 도서관 인기 메인에서 클릭시
-                book_search.BookTask  oi = new book_search(). new BookTask(mContext);
+                BookSerachActivity.BookTask  oi = new BookSerachActivity(). new BookTask(mContext);
                 String a = blist.get(position).getIsbn13();
                 oi.execute(a);
             }
@@ -163,7 +167,7 @@ public class FragmentHome extends Fragment {
         mRecyclerView2.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView2, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                book_search.BookTask  oi = new book_search(). new BookTask(mContext); // 교보문고 베스트셀러 클릭시
+                BookSerachActivity.BookTask  oi = new BookSerachActivity(). new BookTask(mContext); // 교보문고 베스트셀러 클릭시
                 String a = elist.get(position).getBest_isbn13();
                 oi.execute(a);
             }
@@ -180,7 +184,7 @@ public class FragmentHome extends Fragment {
     class library extends AsyncTask<String, Void, String> {
         @Override
         protected void onPostExecute(String s) {
-            bookadapter = new libraybook(blist, mContext);
+            bookadapter = new librayBookadapter(blist, mContext);
             mRecyclerView.setAdapter(bookadapter);
 
         }
@@ -198,7 +202,7 @@ public class FragmentHome extends Fragment {
 
                 for(int i=0; i< 15; i++) {
                     Node docs = nodeList.item(i);
-                    Log.d("뭐야1", String.valueOf(nodeList.getLength()));
+                    Log.d("library", String.valueOf(nodeList.getLength()));
                     NodeList cList = docs.getChildNodes();
                     datalibraryVO b = new datalibraryVO();
                     for(int k=0; k<cList.getLength(); k++) {
@@ -274,7 +278,7 @@ public class FragmentHome extends Fragment {
 
                 }
                 for(BestBookVO bo : elist) {
-                    Log.d("멍", bo.getBest_bookimageURL());
+                    Log.d("URL", bo.getBest_bookimageURL());
                 }
             } catch (Exception e) {
                 e.printStackTrace();

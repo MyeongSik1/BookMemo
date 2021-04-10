@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.DB;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

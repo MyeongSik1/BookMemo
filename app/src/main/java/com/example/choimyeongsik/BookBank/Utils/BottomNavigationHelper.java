@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.Utils;
 import android.annotation.SuppressLint;
 
 import android.util.Log;
@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 
 public class BottomNavigationHelper {
     @SuppressLint("RestrictedApi")
-    static void disableShiftMode(BottomNavigationView view) {
+    public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
             Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");

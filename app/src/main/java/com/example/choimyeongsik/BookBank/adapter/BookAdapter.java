@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.adapter;
 
 
 import android.util.Log;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.model.KAKAOBookVO;
+import com.example.choimyeongsik.BookBank.R;
 
 import java.util.ArrayList;
 

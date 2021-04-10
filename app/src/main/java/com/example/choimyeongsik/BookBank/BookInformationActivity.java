@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.DB.BookDatabase;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -47,7 +48,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-public class book_information extends AppCompatActivity implements View.OnClickListener {
+public class BookInformationActivity extends AppCompatActivity implements View.OnClickListener {
     TextView text_title;
     TextView text_sale_price;
     TextView text_datatime;
@@ -202,10 +203,10 @@ public class book_information extends AppCompatActivity implements View.OnClickL
                 Cursor cu = db.rawQuery(sql, null);
                 if (cu.getCount() != 1) {
                     db.execSQL("insert into tb_book ( title, pirce, authors, publisher, category, thumbnail, isbn) values (?,?,?,?,?,?,?)", new String[]{ name, pr, authors, main_publisher, category, thumbnail, isbn});
-                    Toast toast = Toast.makeText(book_information.this, "등록 완료", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(BookInformationActivity.this, "등록 완료", Toast.LENGTH_SHORT);
                     toast.show();
                 } else {
-                    Toast toast = Toast.makeText(book_information.this, "이미 등록된 책입니다", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(BookInformationActivity.this, "이미 등록된 책입니다", Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 db.close();
@@ -338,7 +339,6 @@ public class book_information extends AppCompatActivity implements View.OnClickL
             }
             for (int z = 0; z < to2.length; z++) {
                 if (to2[z] != 0) {
-                    Log.d("나왔다", "왓어5");
                     double d = (double) to2[z] / (double) a * 100 ;   // Percent
                     xVals.add(St[z]+Ge[z]);
                     yVals1.add(new BarEntry(z, Math.round(d)));
@@ -359,9 +359,9 @@ public class book_information extends AppCompatActivity implements View.OnClickL
             data.setValueTextSize(15);
             xAxis.setTextSize(15);
             data.setValueFormatter(new MyValueFormatter());   //  percent와 소수점 제거
-            set.setColors(ContextCompat.getColor(book_information.this, R.color.red), // Bar 색상 변경
-                    ContextCompat.getColor(book_information.this, R.color.yellow),
-                    ContextCompat.getColor(book_information.this, R.color.green));
+            set.setColors(ContextCompat.getColor(BookInformationActivity.this, R.color.red), // Bar 색상 변경
+                    ContextCompat.getColor(BookInformationActivity.this, R.color.yellow),
+                    ContextCompat.getColor(BookInformationActivity.this, R.color.green));
             barChart.setData(data);
             barChart.animateY(5000);
 
@@ -423,7 +423,7 @@ public class book_information extends AppCompatActivity implements View.OnClickL
 
 
     class Background extends AsyncTask<String, Integer, String> {
-        ProgressDialog asyncDialog = new ProgressDialog(book_information.this);
+        ProgressDialog asyncDialog = new ProgressDialog(BookInformationActivity.this);
 
         @Override
         protected void onPreExecute() {

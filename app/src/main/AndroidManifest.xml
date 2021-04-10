@@ -12,7 +12,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.example.choimyeongsik.BookBank.contents_revise"
+            android:name="com.example.choimyeongsik.BookBank.ReviseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.choimyeongsik.BookBank.MainActivity"
@@ -25,21 +25,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.choimyeongsik.BookBank.book_search"
+            android:name="com.example.choimyeongsik.BookBank.BookSerachActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.choimyeongsik.BookBank.book_information"
+            android:name="com.example.choimyeongsik.BookBank.BookInformationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.choimyeongsik.BookBank.book_record"
+            android:name="com.example.choimyeongsik.BookBank.BookRecordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.choimyeongsik.BookBank.ImageClickView"
+            android:name="com.example.choimyeongsik.BookBank.ImageClickActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.choimyeongsik.BookBank.contents_record"
+            android:name="com.example.choimyeongsik.BookBank.RecordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.choimyeongsik.BookBank.Setting"
+        <activity android:name="com.example.choimyeongsik.BookBank.SettingActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <meta-data
@@ -68,7 +68,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

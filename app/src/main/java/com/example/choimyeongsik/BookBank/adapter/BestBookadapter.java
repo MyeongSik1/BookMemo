@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.adapter;
 
 
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.model.BestBookVO;
+import com.example.choimyeongsik.BookBank.R;
 
 import java.util.ArrayList;
 

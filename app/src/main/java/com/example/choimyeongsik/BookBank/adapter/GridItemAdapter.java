@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.model.GridItem;
+import com.example.choimyeongsik.BookBank.ImageClickActivity;
+import com.example.choimyeongsik.BookBank.R;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -57,7 +60,7 @@ public class GridItemAdapter extends RecyclerView.Adapter<GridItemAdapter.ViewHo
                 bit.compress(Bitmap.CompressFormat.JPEG,100,stream);
                 byte[] byteArray = stream.toByteArray();
                 Context context = v.getContext();
-                Intent intent = new Intent(v.getContext(),ImageClickView.class);
+                Intent intent = new Intent(v.getContext(), ImageClickActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("image", byteArray);
                 context.startActivity(intent);

@@ -1,5 +1,9 @@
 package com.example.choimyeongsik.BookBank;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -9,9 +13,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,70 +24,83 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.DB.BookDatabase;
+import com.example.choimyeongsik.BookBank.Utils.ImageResizeUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
-
-public class contents_record extends AppCompatActivity {
+public class ReviseActivity extends AppCompatActivity {
     EditText editText;
-    Button write_button;
+    Button revise_button;
     Button camera;
     Button gild;
-
+    Button del;
     private Boolean isCamera = false;
-    final static int IMAGE_PICK=300;
-    final static int IMAGE_CAMEAR=400;
+    final static int IMAGE_PICK = 300;
+    final static int IMAGE_CAMEAR = 400;
     private File tempFile;
     private Uri photoUri;
     private Bitmap originalBm;
     ImageView imageView1;
-    private  Boolean isImage = false;
+    private Boolean isImage = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contents_record);
+        setContentView(R.layout.activity_contents_revise);
         getWindow().setStatusBarColor(Color.parseColor("#D8D8D8"));
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_content);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_revise);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        final String title_ = intent.getExtras().getString("title");
-        editText = (EditText)findViewById(R.id.record_contents);
-        write_button = (Button)findViewById(R.id.contents_button);
-        gild = (Button)findViewById(R.id.gild);
-        camera = (Button)findViewById(R.id.camear);
-        imageView1 = (ImageView)findViewById(R.id.imageview1);
 
-        write_button.setOnClickListener(new View.OnClickListener() {
+
+
+
+        Intent intent = getIntent();
+        final String number = intent.getExtras().getString("number");
+        editText = (EditText) findViewById(R.id.revise_contents);
+        revise_button = (Button) findViewById(R.id.revise_button);
+        gild = (Button) findViewById(R.id.gild_revise);
+        camera = (Button) findViewById(R.id.camear_revise);
+        imageView1 = (ImageView) findViewById(R.id.revise_imageview1);
+        del = (Button)findViewById(R.id.del_revise);
+        BookDatabase bookDatabase = new BookDatabase(getApplication());
+        SQLiteDatabase db = bookDatabase.getWritableDatabase();
+        Cursor cs = db.rawQuery("select * from  tb_book where  _id =  '" + number + "' ", null);
+        cs.moveToNext();
+        String title = cs.getString(8);
+        String content = cs.getString(11);
+        byte[] image = cs.getBlob(9);
+        editText.setText(content);
+        if (image != null) {        // 해당 _id에 이미지가 있으면
+            imageView1.setVisibility(View.VISIBLE);
+            Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
+            Log.d("레코드어댑터", String.valueOf(bmp));
+            Glide.with(imageView1.getContext()).load(bmp).override(300, 300).into(imageView1);
+        }
+        revise_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                String contents1 = editText.getText().toString().trim();
+            public void onClick(View v) {
                 BookDatabase bookDatabase = new BookDatabase(getApplication());
                 SQLiteDatabase db = bookDatabase.getWritableDatabase();
+                String revise_content = editText.getText().toString().trim();
                 ContentValues cv = new ContentValues();
-                if (isImage) {         // 이미지 저장할땐 ContenValues 사용
+                if(isImage) {
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     originalBm.compress(Bitmap.CompressFormat.PNG, 100, out);
                     cv.put("image", out.toByteArray());
-                    cv.put("name", title_);
-                    cv.put("contents", contents1);
-                    db.insert("tb_book", null, cv);
-                    db.close();
-                    finish();
+                    db.execSQL("UPDATE tb_book SET contents = '" + revise_content + "' where _id = '" + number + "'");
+                    db.update("tb_book", cv, "_id =" + number, null);
                 } else {
-                    cv.put("name", title_);
-                    cv.put("contents", contents1);
-                    db.insert("tb_book", null, cv);
-                    db.close();
-                    finish();
+                    db.execSQL("UPDATE tb_book SET contents = '" + revise_content + "' where _id = '" + number + "'");
                 }
+                finish();
             }
         });
 
@@ -106,17 +123,28 @@ public class contents_record extends AppCompatActivity {
 
             }
         });
+        del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BookDatabase bookDatabase = new BookDatabase(getApplicationContext());
+                SQLiteDatabase db = bookDatabase.getWritableDatabase();
+                Cursor cs = db.rawQuery("select * from  tb_book where  _id =  '" + number + "' ", null);
+                cs.moveToNext();
+                String content = cs.getString(11);
+                byte[] image = cs.getBlob(9);
+                db.execSQL("DELETE FROM tb_book WHERE contents = '" + content + "';");
+                db.execSQL("DELETE FROM tb_book WHERE image = '" + image + "';");
 
 
-
+                finish();
+            }
+        });
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) {
-            // 카메라 or 갤러리에서 취소하였을때
             isImage = false;
             if (tempFile != null) {
                 if (tempFile.exists()) {
@@ -169,14 +197,9 @@ public class contents_record extends AppCompatActivity {
 
     private void setImage() {
         ImageResizeUtils.resizeFile(tempFile, tempFile, 1280, isCamera);
-
         BitmapFactory.Options options = new BitmapFactory.Options();
         originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
         Log.d("GD", "setImage : " + tempFile.getAbsolutePath());
-
-
-
-        imageView1.setVisibility(View.VISIBLE);
         imageView1.setImageBitmap(originalBm);
 
 
@@ -214,16 +237,10 @@ public class contents_record extends AppCompatActivity {
     }
 
     private File createImageFile() throws IOException {
-
-        // 이미지 파일 이름
         String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
         String imageFileName = "Largo_" + timeStamp + "_";
-
-        // 이미지가 저장될 폴더 이름
         File storageDir = new File(Environment.getExternalStorageDirectory() + "/Largo/");
         if (!storageDir.exists()) storageDir.mkdirs();
-
-        // 빈 파일 생성
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
 
         return image;
@@ -232,7 +249,7 @@ public class contents_record extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case android.R.id.home:{
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
                 finish();
                 return true;
             }

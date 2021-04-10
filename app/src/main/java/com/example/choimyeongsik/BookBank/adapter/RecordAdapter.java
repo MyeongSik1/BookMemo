@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.choimyeongsik.BookBank.R;
+import com.example.choimyeongsik.BookBank.model.RecordVo;
 
 import java.util.ArrayList;
 
@@ -21,13 +23,13 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.ItemViewHo
 
 
 private Context mContext;
-    private ArrayList<Record_Item> mItems;
-    private ArrayList<Record_Item> arrayList;
+    private ArrayList<RecordVo> mItems;
+    private ArrayList<RecordVo> arrayList;
 
-    public RecordAdapter(Context mContext, ArrayList<Record_Item> items) {
+    public RecordAdapter(Context mContext, ArrayList<RecordVo> items) {
       this.mContext =mContext;
         mItems = items;
-        arrayList = new ArrayList<Record_Item>();
+        arrayList = new ArrayList<RecordVo>();
         arrayList.addAll(mItems);
     }
 

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.choimyeongsik.BookBank.DB.BookDatabase;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -43,7 +44,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class Setting extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_SIGN_IN = 0;
     public static final int REQUEST_CODE_OPENING = 1;
     public static final int REQUEST_CODE_CREATION = 2;
@@ -53,16 +54,16 @@ public class Setting extends AppCompatActivity {
     public DriveClient mDriveClient;
     public DriveResourceClient mDriveResourceClient;
     public TaskCompletionSource <DriveId> mOpenItemTaskSource;
-   private Button driveBackup;
-   private Button driveLoad;
+    private Button driveBackup;
+    private Button driveLoad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         getWindow().setStatusBarColor(Color.parseColor("#D8D8D8"));
-        driveBackup = (Button)findViewById(R.id.drive_backup);
-        driveLoad = (Button)findViewById(R.id.drive_load);
+        driveBackup = (Button) findViewById(R.id.drive_backup);
+        driveLoad = (Button) findViewById(R.id.drive_load);
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_setting);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -85,6 +86,7 @@ public class Setting extends AppCompatActivity {
         });
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -95,6 +97,7 @@ public class Setting extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -125,6 +128,7 @@ public class Setting extends AppCompatActivity {
 
         }
     }
+
     public void connectToDrive(boolean backup) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account == null) {
@@ -283,7 +287,6 @@ public class Setting extends AppCompatActivity {
         return pickItem(openOptions);
 
 
-
     }
 
     public static void restarApp(Context context) {
@@ -293,9 +296,5 @@ public class Setting extends AppCompatActivity {
         Intent mainIntent = Intent.makeRestartActivityTask(componentName);
         context.startActivity(mainIntent);
     }
+
 }
-
-
-
-
-

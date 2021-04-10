@@ -1,4 +1,4 @@
-package com.example.choimyeongsik.BookBank;
+package com.example.choimyeongsik.BookBank.model;
 
 public class BestBookVO {
     private String best_isbn13;
